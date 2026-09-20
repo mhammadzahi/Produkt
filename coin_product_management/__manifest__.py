@@ -21,7 +21,7 @@ Features
   low mintage alerting.
 * CSV import compatible with standard product export/import column headers.
 """,
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Sales/Sales',
     'author': "Dunja",
     'license': 'LGPL-3',
