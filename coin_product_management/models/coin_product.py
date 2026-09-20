@@ -5,6 +5,18 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     # ------------------------------------------------------------------
+    # Favorite / priority star (used by list and kanban views)
+    # ------------------------------------------------------------------
+    priority = fields.Selection(
+        selection=[
+            ('0', 'Normal'),
+            ('1', 'Favorite'),
+        ],
+        string="Favorite",
+        default='0',
+    )
+
+    # ------------------------------------------------------------------
     # Coin visual assets
     # ------------------------------------------------------------------
     obverse_image = fields.Image(
