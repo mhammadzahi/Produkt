@@ -5,7 +5,7 @@
          WINDOW ACTIONS
          ================================================================ -->
     <record id="action_coin_products" model="ir.actions.act_window">
-        <field name="name">Münzen &amp; Produkte</field>
+        <field name="name">Coins &amp; Products</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_coin_product_template_search"/>
@@ -31,7 +31,7 @@
     </record>
 
     <record id="action_coin_eigenprodukte" model="ir.actions.act_window">
-        <field name="name">Eigenprodukte</field>
+        <field name="name">In-House Products</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_coin_product_template_search"/>
@@ -57,7 +57,7 @@
     </record>
 
     <record id="action_coin_kundenprodukte" model="ir.actions.act_window">
-        <field name="name">Kundenprodukte</field>
+        <field name="name">Client Products</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_coin_product_template_search"/>
@@ -83,7 +83,7 @@
     </record>
 
     <record id="action_coin_medaillen" model="ir.actions.act_window">
-        <field name="name">Medaillen</field>
+        <field name="name">Medals</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_coin_product_template_search"/>
@@ -112,48 +112,48 @@
          MENUS
          ================================================================ -->
     <menuitem id="menu_coin_root"
-              name="Münzen"
+              name="Coins"
               sequence="60"/>
 
     <menuitem id="menu_coin_products"
-              name="Münzen &amp; Produkte"
+              name="Coins &amp; Products"
               parent="menu_coin_root"
               action="action_coin_products"
               sequence="10"/>
 
     <menuitem id="menu_coin_eigenprodukte"
-              name="Eigenprodukte"
+              name="In-House Products"
               parent="menu_coin_root"
               action="action_coin_eigenprodukte"
               sequence="20"/>
 
     <menuitem id="menu_coin_kundenprodukte"
-              name="Kundenprodukte"
+              name="Client Products"
               parent="menu_coin_root"
               action="action_coin_kundenprodukte"
               sequence="30"/>
 
     <menuitem id="menu_coin_medaillen"
-              name="Medaillen"
+              name="Medals"
               parent="menu_coin_root"
               action="action_coin_medaillen"
               sequence="40"/>
 
     <menuitem id="menu_coin_configuration"
-              name="Konfiguration"
+              name="Configuration"
               parent="menu_coin_root"
               sequence="100"
               groups="base.group_system"/>
 
     <menuitem id="menu_coin_settings"
-              name="Einstellungen"
+              name="Settings"
               parent="menu_coin_configuration"
               action="action_coin_product_config_settings"
               sequence="10"
               groups="base.group_system"/>
 
     <menuitem id="menu_coin_categories"
-              name="Kategorien"
+              name="Categories"
               parent="menu_coin_configuration"
               action="product.product_category_action_form"
               sequence="20"

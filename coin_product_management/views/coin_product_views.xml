@@ -112,11 +112,11 @@
                 <field name="default_code" string="SKU / Ref"/>
                 <field name="issuing_country_id" string="Issuing Authority"/>
                 <separator/>
-                <filter string="Eigenprodukte" name="filter_eigenprodukte"
+                <filter string="In-House Products" name="filter_eigenprodukte"
                         domain="[('categ_id.name', 'ilike', '002 Münzen Eigenprodukte')]"/>
-                <filter string="Kundenprodukte" name="filter_kundenprodukte"
+                <filter string="Client Products" name="filter_kundenprodukte"
                         domain="[('categ_id.name', 'ilike', '003 Münzen Kundenprodukte')]"/>
-                <filter string="Medaillen" name="filter_medaillen"
+                <filter string="Medals" name="filter_medaillen"
                         domain="[('categ_id.name', 'ilike', '004 Medaillen')]"/>
                 <separator/>
                 <filter string="Gold Coins" name="filter_gold" domain="[('coin_metal', '=', 'gold')]"/>

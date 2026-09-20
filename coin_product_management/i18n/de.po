@@ -1,0 +1,61 @@
+#	Translation of Odoo Server.
+#	This file contains the translation of the following modules:
+#	* coin_product_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: \n"
+
+#. module: coin_product_management
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_root
+msgid "Coins"
+msgstr "Münzen"
+
+#. module: coin_product_management
+#: model:ir.actions.act_window,name:coin_product_management.action_coin_products
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_products
+msgid "Coins & Products"
+msgstr "Münzen & Produkte"
+
+#. module: coin_product_management
+#: model:ir.actions.act_window,name:coin_product_management.action_coin_eigenprodukte
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_eigenprodukte
+#: model:ir.ui.view,arch_db:coin_product_management.view_coin_product_template_search
+msgid "In-House Products"
+msgstr "Eigenprodukte"
+
+#. module: coin_product_management
+#: model:ir.actions.act_window,name:coin_product_management.action_coin_kundenprodukte
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_kundenprodukte
+#: model:ir.ui.view,arch_db:coin_product_management.view_coin_product_template_search
+msgid "Client Products"
+msgstr "Kundenprodukte"
+
+#. module: coin_product_management
+#: model:ir.actions.act_window,name:coin_product_management.action_coin_medaillen
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_medaillen
+#: model:ir.ui.view,arch_db:coin_product_management.view_coin_product_template_search
+msgid "Medals"
+msgstr "Medaillen"
+
+#. module: coin_product_management
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_configuration
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#. module: coin_product_management
+#: model:ir.actions.act_window,name:coin_product_management.action_coin_product_config_settings
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_settings
+msgid "Settings"
+msgstr "Einstellungen"
+
+#. module: coin_product_management
+#: model:ir.ui.menu,name:coin_product_management.menu_coin_categories
+msgid "Categories"
+msgstr "Kategorien"
