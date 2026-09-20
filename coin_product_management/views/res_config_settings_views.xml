@@ -6,41 +6,21 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='stock']" position="inside">
-                <h2>Numismatic Coin Management</h2>
-                <div class="row mt16 o_settings_container" name="coin_management_settings">
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="coin_default_currency_id" string="Default Coin Currency"/>
-                            <div class="text-muted">
-                                Default currency used for numismatic coin pricing display
-                            </div>
-                            <div class="content-group">
-                                <field name="coin_default_currency_id" class="o_light_label"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <field name="coin_enable_dual_image_kanban"/>
-                            <label for="coin_enable_dual_image_kanban" string="Show Obverse &amp; Reverse in Kanban"/>
-                            <div class="text-muted">
-                                Display both coin faces on Kanban cards instead of a single product image
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="coin_low_mintage_threshold" string="Low Mintage Alert Limit"/>
-                            <div class="text-muted">
-                                Mintage at or below this value triggers a low mintage warning
-                            </div>
-                            <div class="content-group">
-                                <field name="coin_low_mintage_threshold" class="o_light_label"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <xpath expr="//app[@name='stock']" position="inside">
+                <block title="Numismatic Coin Management" name="coin_management_settings">
+                    <setting title="Default Coin Currency"
+                             help="Default currency used for numismatic coin pricing display">
+                        <field name="coin_default_currency_id"/>
+                    </setting>
+                    <setting title="Show Obverse &amp; Reverse in Kanban"
+                             help="Display both coin faces on Kanban cards instead of a single product image">
+                        <field name="coin_enable_dual_image_kanban"/>
+                    </setting>
+                    <setting title="Low Mintage Alert Limit"
+                             help="Mintage at or below this value triggers a low mintage warning">
+                        <field name="coin_low_mintage_threshold"/>
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>
