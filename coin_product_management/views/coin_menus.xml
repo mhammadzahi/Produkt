@@ -35,7 +35,7 @@
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_coin_product_template_search"/>
-        <field name="domain">[('is_coin_product', '=', True), ('categ_id', 'ilike', '002 Münzen Eigenprodukte')]</field>
+        <field name="domain">[('is_coin_product', '=', True), ('categ_id.name', 'ilike', '002 Münzen Eigenprodukte')]</field>
         <field name="context">{'default_is_coin_product': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -61,7 +61,7 @@
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_coin_product_template_search"/>
-        <field name="domain">[('is_coin_product', '=', True), ('categ_id', 'ilike', '003 Münzen Kundenprodukte')]</field>
+        <field name="domain">[('is_coin_product', '=', True), ('categ_id.name', 'ilike', '003 Münzen Kundenprodukte')]</field>
         <field name="context">{'default_is_coin_product': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -87,7 +87,7 @@
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_coin_product_template_search"/>
-        <field name="domain">[('is_coin_product', '=', True), ('categ_id', 'ilike', '004 Medaillen')]</field>
+        <field name="domain">[('is_coin_product', '=', True), ('categ_id.name', 'ilike', '004 Medaillen')]</field>
         <field name="context">{'default_is_coin_product': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

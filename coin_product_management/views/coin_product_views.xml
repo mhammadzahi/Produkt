@@ -113,11 +113,11 @@
                 <field name="issuing_country_id" string="Issuing Authority"/>
                 <separator/>
                 <filter string="Eigenprodukte" name="filter_eigenprodukte"
-                        domain="[('categ_id', 'ilike', '002 Münzen Eigenprodukte')]"/>
+                        domain="[('categ_id.name', 'ilike', '002 Münzen Eigenprodukte')]"/>
                 <filter string="Kundenprodukte" name="filter_kundenprodukte"
-                        domain="[('categ_id', 'ilike', '003 Münzen Kundenprodukte')]"/>
+                        domain="[('categ_id.name', 'ilike', '003 Münzen Kundenprodukte')]"/>
                 <filter string="Medaillen" name="filter_medaillen"
-                        domain="[('categ_id', 'ilike', '004 Medaillen')]"/>
+                        domain="[('categ_id.name', 'ilike', '004 Medaillen')]"/>
                 <separator/>
                 <filter string="Gold Coins" name="filter_gold" domain="[('coin_metal', '=', 'gold')]"/>
                 <filter string="Silver Coins" name="filter_silver" domain="[('coin_metal', '=', 'silver')]"/>
