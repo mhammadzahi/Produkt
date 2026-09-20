@@ -1,0 +1,7 @@
+Go to Coins → Configuration → Categories.
+- Click New, name it exactly CIT Artikelgruppen, leave Parent Category empty, Save.
+- Click New again, name it exactly 002 Münzen Eigenprodukte, set Parent Category to CIT Artikelgruppen, Save.
+- Repeat for 003 Münzen Kundenprodukte and 004 Medaillen, both with parent CIT Artikelgruppen.
+- Click New once more, name it exactly Dienstleistung, leave Parent Category empty, Save.
+- Go back to your import screen, click Test again — all 4 values should now resolve cleanly since they match by exact name/hierarchy, no auto-create needed.
+- Click Import.

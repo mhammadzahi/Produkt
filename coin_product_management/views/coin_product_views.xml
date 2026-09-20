@@ -39,6 +39,7 @@
         <field name="arch" type="xml">
             <kanban string="Coins &amp; Medals" sample="1" class="o_coin_kanban">
                 <field name="id"/>
+                <field name="write_date"/>
                 <field name="is_favorite"/>
                 <field name="default_code"/>
                 <field name="name"/>
@@ -55,17 +56,17 @@
                     <t t-name="card">
                         <div class="d-flex align-items-start">
                             <t t-if="record.kanban_dual_image_enabled.raw_value">
-                                <img t-att-src="kanban_image('product.template', 'obverse_image', record.id.raw_value)"
+                                <img t-att-src="'/web/image/product.template/' + record.id.raw_value + '/obverse_image?unique=' + record.write_date.value"
                                      class="o_kanban_image rounded me-1"
                                      alt="Obverse"
                                      style="width:48px;height:48px;object-fit:cover;"/>
-                                <img t-att-src="kanban_image('product.template', 'reverse_image', record.id.raw_value)"
+                                <img t-att-src="'/web/image/product.template/' + record.id.raw_value + '/reverse_image?unique=' + record.write_date.value"
                                      class="o_kanban_image rounded me-2"
                                      alt="Reverse"
                                      style="width:48px;height:48px;object-fit:cover;"/>
                             </t>
                             <t t-else="">
-                                <img t-att-src="kanban_image('product.template', 'image_128', record.id.raw_value)"
+                                <img t-att-src="'/web/image/product.template/' + record.id.raw_value + '/image_128?unique=' + record.write_date.value"
                                      class="o_kanban_image rounded me-2"
                                      alt="Product"
                                      style="width:56px;height:56px;object-fit:cover;"/>
