@@ -5,18 +5,6 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     # ------------------------------------------------------------------
-    # Favorite / priority star (used by list and kanban views)
-    # ------------------------------------------------------------------
-    priority = fields.Selection(
-        selection=[
-            ('0', 'Normal'),
-            ('1', 'Favorite'),
-        ],
-        string="Favorite",
-        default='0',
-    )
-
-    # ------------------------------------------------------------------
     # Coin visual assets
     # ------------------------------------------------------------------
     obverse_image = fields.Image(
@@ -70,7 +58,7 @@ class ProductTemplate(models.Model):
         tracking=True,
     )
     coin_weight = fields.Char(
-        string="Weight",
+        string="Coin Weight",
         help="e.g., 1 oz, 2 oz, 0.5 g, 31.1 g",
     )
     coin_diameter = fields.Float(

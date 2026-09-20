@@ -9,7 +9,7 @@
         <field name="model">product.template</field>
         <field name="arch" type="xml">
             <list string="Coins &amp; Medals" sample="1">
-                <field name="priority" widget="priority" optional="show"/>
+                <field name="is_favorite" widget="boolean_favorite" optional="show"/>
                 <field name="default_code" string="SKU / Ref" optional="show"/>
                 <field name="name" string="Coin Name"/>
                 <field name="categ_id" optional="show"/>
@@ -39,7 +39,7 @@
         <field name="arch" type="xml">
             <kanban string="Coins &amp; Medals" sample="1" class="o_coin_kanban">
                 <field name="id"/>
-                <field name="priority"/>
+                <field name="is_favorite"/>
                 <field name="default_code"/>
                 <field name="name"/>
                 <field name="categ_id"/>
@@ -75,7 +75,7 @@
                                     <strong class="o_kanban_record_title">
                                         <field name="name"/>
                                     </strong>
-                                    <field name="priority" widget="priority"/>
+                                    <field name="is_favorite" widget="boolean_favorite"/>
                                 </div>
                                 <div class="text-muted small">
                                     <field name="default_code"/>
@@ -123,15 +123,13 @@
                 <filter string="Silver Coins" name="filter_silver" domain="[('coin_metal', '=', 'silver')]"/>
                 <separator/>
                 <filter string="In Stock" name="filter_in_stock" domain="[('qty_available', '&gt;', 0)]"/>
-                <filter string="Starred / Favorites" name="filter_favorites" domain="[('priority', '=', '1')]"/>
+                <filter string="Starred / Favorites" name="filter_favorites" domain="[('is_favorite', '=', True)]"/>
                 <separator/>
-                <group expand="0" string="Group By">
-                    <filter string="Category" name="groupby_category" context="{'group_by': 'categ_id'}"/>
-                    <filter string="Precious Metal" name="groupby_metal" context="{'group_by': 'coin_metal'}"/>
-                    <filter string="Finish" name="groupby_finish" context="{'group_by': 'coin_finish'}"/>
-                    <filter string="Year of Issue" name="groupby_year" context="{'group_by': 'year_of_issue'}"/>
-                    <filter string="Issuing Authority" name="groupby_country" context="{'group_by': 'issuing_country_id'}"/>
-                </group>
+                <filter string="Category" name="groupby_category" context="{'group_by': 'categ_id'}"/>
+                <filter string="Precious Metal" name="groupby_metal" context="{'group_by': 'coin_metal'}"/>
+                <filter string="Finish" name="groupby_finish" context="{'group_by': 'coin_finish'}"/>
+                <filter string="Year of Issue" name="groupby_year" context="{'group_by': 'year_of_issue'}"/>
+                <filter string="Issuing Authority" name="groupby_country" context="{'group_by': 'issuing_country_id'}"/>
             </search>
         </field>
     </record>
