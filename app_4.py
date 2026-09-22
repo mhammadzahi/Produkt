@@ -36,7 +36,7 @@ import sys
 from pathlib import Path
 
 INPUT_CSV = Path("odoo_cit_summer_2026.csv")
-OUTPUT_CSV = Path("odoo_cit_summer_2026_.csv")  # updated in place
+OUTPUT_CSV = Path("odoo_cit_summer_2026.csv")  # updated in place
 
 QTY_MIN, QTY_MAX = 5, 75
 RANDOM_SEED = 42

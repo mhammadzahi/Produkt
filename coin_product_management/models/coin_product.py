@@ -34,6 +34,10 @@ class ProductTemplate(models.Model):
         default=True,
         index=True,
     )
+    # Coins are physical inventory; enable quantity tracking by default so
+    # "Quantity On Hand" imports and qty_available actually reflect stock
+    # instead of always reading 0 (Odoo defaults new Goods to untracked).
+    is_storable = fields.Boolean(default=True)
     coin_metal = fields.Selection(
         selection=[
             ('gold', 'Gold (.999 / .9999)'),
