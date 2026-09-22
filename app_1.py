@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Numismatic Coin Dataset Generator with VERIFIED Real Coin URLs & Base64
+ ----------------- Numismatic Coin Dataset Generator with VERIFIED Real Coin URLs & Base64 -----------------
 For Odoo 19 'coin_product_management' / 'product.template'
 
 All URLs below are live, tested Wikimedia Commons images.

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_attribute_coin_cover" model="product.attribute">
+        <field name="name">Coin Cover</field>
+        <field name="create_variant">always</field>
+    </record>
+
+    <record id="product_attribute_value_capsule" model="product.attribute.value">
+        <field name="name">Capsule</field>
+        <field name="attribute_id" ref="product_attribute_coin_cover"/>
+    </record>
+
+    <record id="product_attribute_value_box" model="product.attribute.value">
+        <field name="name">Box</field>
+        <field name="attribute_id" ref="product_attribute_coin_cover"/>
+    </record>
+
+</odoo>

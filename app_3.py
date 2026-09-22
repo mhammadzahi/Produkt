@@ -3,6 +3,14 @@
 Converts PDF CMYK/alpha masks to verified sRGB JPEGs.
 """
 
+
+
+"""
+
+----------- PDF to CSV -----------
+
+"""
+
 import base64
 import csv
 import io

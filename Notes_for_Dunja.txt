@@ -5,3 +5,8 @@ Go to Coins → Configuration → Categories.
 - Click New once more, name it exactly Dienstleistung, leave Parent Category empty, Save.
 - Go back to your import screen, click Test again — all 4 values should now resolve cleanly since they match by exact name/hierarchy, no auto-create needed.
 - Click Import.
+
+
+
+
+Notes: prefix: 003 == customer coin not company coin.

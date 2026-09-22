@@ -78,6 +78,53 @@ class ProductTemplate(models.Model):
         default=lambda self: fields.Date.today().year,
     )
 
+    # ------------------------------------------------------------------
+    # Customer-commissioned products (Kundenprodukte)
+    # ------------------------------------------------------------------
+    customer_id = fields.Many2one(
+        comodel_name='res.partner',
+        string="Customer",
+        help="Client this custom coin/medal was produced for (customer-commissioned products only).",
+    )
+    customer_phone = fields.Char(
+        string="Customer Phone",
+        help="Contact phone for this order. Independent of the linked Customer's own phone "
+             "number, so it can be imported/edited per product (e.g. a one-off contact).",
+    )
+    customer_email = fields.Char(
+        string="Customer Email",
+        help="Contact email for this order. Independent of the linked Customer's own email "
+             "address, so it can be imported/edited per product (e.g. a one-off contact).",
+    )
+
+    @api.onchange('customer_id')
+    def _onchange_customer_id_prefill_contact(self):
+        if self.customer_id:
+            if not self.customer_phone:
+                self.customer_phone = self.customer_id.phone
+            if not self.customer_email:
+                self.customer_email = self.customer_id.email
+
+    # ------------------------------------------------------------------
+    # Coin Cover variant (Capsule / Box)
+    # ------------------------------------------------------------------
+    coin_cover_values = fields.Char(
+        string="Coin Cover",
+        compute='_compute_coin_cover_values',
+        store=True,
+    )
+
+    @api.depends('attribute_line_ids.attribute_id', 'attribute_line_ids.value_ids')
+    def _compute_coin_cover_values(self):
+        attribute = self.env.ref(
+            'coin_product_management.product_attribute_coin_cover', raise_if_not_found=False
+        )
+        for record in self:
+            line = attribute and record.attribute_line_ids.filtered(
+                lambda l: l.attribute_id == attribute
+            )
+            record.coin_cover_values = ", ".join(line.value_ids.mapped('name')) if line else False
+
     kanban_dual_image_enabled = fields.Boolean(
         string="Dual Image Kanban Enabled",
         compute='_compute_kanban_dual_image_enabled',

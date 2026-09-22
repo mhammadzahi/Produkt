@@ -1,0 +1,7 @@
+/* Coin list/kanban: show only the favorite star, hide the "Add to Favorites" /
+   "Remove from Favorites" text label that the boolean_favorite widget renders
+   next to it on non-mobile viewports. */
+.o_coin_list .o_field_boolean_favorite span,
+.o_coin_kanban .o_field_boolean_favorite span {
+    display: none !important;
+}

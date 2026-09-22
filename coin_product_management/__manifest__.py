@@ -21,17 +21,23 @@ Features
   low mintage alerting.
 * CSV import compatible with standard product export/import column headers.
 """,
-    'version': '19.0.1.0.2',
+    'version': '19.0.1.0.4',
     'category': 'Sales/Sales',
     'author': "Dunja",
     'license': 'LGPL-3',
     'depends': ['base', 'product', 'stock', 'mail'],
     'data': [
         'security/ir.model.access.csv',
+        'data/product_attribute_data.xml',
         'views/coin_product_views.xml',
         'views/res_config_settings_views.xml',
         'views/coin_menus.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'coin_product_management/static/src/css/coin_product_management.css',
+        ],
+    },
     'images': [],
     'installable': True,
     'application': True,

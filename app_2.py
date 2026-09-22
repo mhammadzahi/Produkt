@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# ----------------------------
+# 
+# CSV Bbr of lines
+#
+# ----------------------------
+
 import argparse
 import csv
 from pathlib import Path

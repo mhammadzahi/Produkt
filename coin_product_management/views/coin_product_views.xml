@@ -8,18 +8,22 @@
         <field name="name">coin.product.template.list</field>
         <field name="model">product.template</field>
         <field name="arch" type="xml">
-            <list string="Coins &amp; Medals" sample="1">
+            <list string="Coins &amp; Medals" sample="1" class="o_coin_list">
                 <field name="is_favorite" widget="boolean_favorite" optional="show"/>
                 <field name="default_code" string="SKU / Ref" optional="show"/>
                 <field name="name" string="Coin Name"/>
                 <field name="categ_id" optional="show"/>
                 <field name="coin_metal" widget="badge" optional="show"/>
                 <field name="coin_finish" optional="show"/>
+                <field name="coin_cover_values" string="Coin Cover" optional="show"/>
                 <field name="currency_id" column_invisible="1"/>
                 <field name="list_price" string="Sales Price" widget="monetary" optional="show"/>
-                <field name="qty_available" string="On Hand" optional="show"/>
+                <field name="qty_available" string="Coins Left" optional="show"/>
                 <field name="uom_id" string="Unit" optional="show"/>
                 <field name="activity_ids" widget="list_activity" optional="show"/>
+                <field name="customer_id" string="Customer" optional="hide"/>
+                <field name="customer_phone" string="Customer Phone" optional="hide"/>
+                <field name="customer_email" string="Customer Email" optional="hide"/>
                 <field name="coin_mintage" optional="hide"/>
                 <field name="coin_weight" optional="hide"/>
                 <field name="coin_diameter" optional="hide"/>
@@ -46,8 +50,13 @@
                 <field name="categ_id"/>
                 <field name="currency_id"/>
                 <field name="list_price"/>
+                <field name="qty_available"/>
                 <field name="coin_metal"/>
                 <field name="coin_finish"/>
+                <field name="coin_cover_values"/>
+                <field name="customer_id"/>
+                <field name="customer_phone"/>
+                <field name="customer_email"/>
                 <field name="image_128"/>
                 <field name="obverse_image"/>
                 <field name="reverse_image"/>
@@ -82,16 +91,27 @@
                                     <field name="default_code"/>
                                     <span t-if="record.categ_id.raw_value"> · <field name="categ_id"/></span>
                                 </div>
-                                <div class="mt-1">
+                                <div class="mt-1 d-flex align-items-center">
                                     <field name="list_price" widget="monetary"/>
+                                    <span class="text-muted small ms-2">
+                                        <t t-esc="Math.round(record.qty_available.raw_value)"/> coins left
+                                    </span>
                                 </div>
                                 <div class="mt-1">
                                     <span t-if="record.coin_metal.raw_value" class="badge rounded-pill text-bg-warning me-1">
                                         <field name="coin_metal"/>
                                     </span>
-                                    <span t-if="record.coin_finish.raw_value" class="badge rounded-pill text-bg-info">
+                                    <span t-if="record.coin_finish.raw_value" class="badge rounded-pill text-bg-info me-1">
                                         <field name="coin_finish"/>
                                     </span>
+                                    <span t-if="record.coin_cover_values.raw_value" class="badge rounded-pill text-bg-secondary">
+                                        <field name="coin_cover_values"/>
+                                    </span>
+                                </div>
+                                <div t-if="record.customer_id.raw_value" class="mt-1 text-muted small">
+                                    <i class="fa fa-user me-1"/><field name="customer_id"/>
+                                    <span t-if="record.customer_phone.raw_value"> · <field name="customer_phone"/></span>
+                                    <span t-if="record.customer_email.raw_value"> · <field name="customer_email"/></span>
                                 </div>
                             </div>
                         </div>
