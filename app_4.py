@@ -41,10 +41,14 @@ from pathlib import Path
 INPUT_CSV = Path("odoo_cit_summer_2026.csv")
 OUTPUT_CSV = Path("odoo_cit_summer_2026.csv")  # updated in place
 
-QTY_MIN, QTY_MAX = 5, 75
+QTY_MIN, QTY_MAX = 0, 75
 RANDOM_SEED = 42
 
 CLIENT_CATEGORY = "CIT Artikelgruppen / 003 Münzen Kundenprodukte"
+
+# Guarantee at least a couple of visible "0 coins left" rows for testing the
+# zero-stock red styling, rather than leaving it to random chance.
+FORCE_ZERO_STOCK_REFS = {"31254", "31217"}  # Born for Speed - Sailfish, Knight Games - Jousting
 
 DUMMY_CLIENT_PRODUCTS = [
     {
@@ -169,6 +173,20 @@ def add_dummy_client_rows(fieldnames, rows):
     return rows + new_rows, True
 
 
+def force_zero_stock_samples(rows):
+    changed = False
+    for row in rows:
+        if row.get("Internal Reference") in FORCE_ZERO_STOCK_REFS and row.get("Quantity On Hand") != "0":
+            row["Quantity On Hand"] = "0"
+            changed = True
+    if changed:
+        print(f"Stock: forced {sorted(FORCE_ZERO_STOCK_REFS)} to 0 coins left "
+              f"(guaranteed test case for the zero-stock red styling).")
+    else:
+        print("Stock: zero-stock sample rows already set.")
+    return rows, changed
+
+
 def run():
     if not INPUT_CSV.exists():
         sys.exit(f"Input file not found: {INPUT_CSV}")
@@ -181,8 +199,9 @@ def run():
 
     fieldnames, cols_changed = add_missing_columns(fieldnames, rows)
     rows, rows_changed = add_dummy_client_rows(fieldnames, rows)
+    rows, zero_changed = force_zero_stock_samples(rows) if "Quantity On Hand" in fieldnames else (rows, False)
 
-    if not cols_changed and not rows_changed:
+    if not cols_changed and not rows_changed and not zero_changed:
         print("Nothing to do.")
         return
 

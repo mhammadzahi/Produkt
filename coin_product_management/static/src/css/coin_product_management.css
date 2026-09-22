@@ -1,17 +1,17 @@
 /* Coin list/kanban: show only the favorite star, hide the "Add to Favorites" /
-   "Remove from Favorites" text label that the boolean_favorite widget renders
-   next to it. Targeted via the star icon's sibling relationship rather than
-   a guessed wrapper class name, since fa-star/fa-star-o is the one part of
-   this widget's markup that is certain not to change. */
-.o_coin_list i.fa-star ~ span,
-.o_coin_list i.fa-star-o ~ span,
-.o_coin_kanban i.fa-star ~ span,
-.o_coin_kanban i.fa-star-o ~ span,
-.o_coin_list .o_favorite span,
-.o_coin_kanban .o_favorite span,
-.o_coin_list .o_field_boolean_favorite span,
-.o_coin_kanban .o_field_boolean_favorite span {
-    display: none !important;
+   "Remove from Favorites" text label. Confirmed via live DOM inspection that
+   this text is a bare text node inside <a class="o_favorite"> (no wrapping
+   element), immediately after the <i class="fa fa-star(-o)"> icon - so it
+   can't be targeted with `span { display: none }`. Instead, collapse the
+   link's own font size to 0 (hiding the raw text) and restore it only on
+   the icon, which is a distinct element with its own font-size. */
+.o_coin_list .o_favorite,
+.o_coin_kanban .o_favorite {
+    font-size: 0;
+}
+.o_coin_list .o_favorite i,
+.o_coin_kanban .o_favorite i {
+    font-size: 1rem;
 }
 
 /* Kanban "coins left" stock indicator */
