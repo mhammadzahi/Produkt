@@ -8,7 +8,7 @@
         <field name="name">coin.product.template.list</field>
         <field name="model">product.template</field>
         <field name="arch" type="xml">
-            <list string="Coins &amp; Medals" sample="1" class="o_coin_list">
+            <list string="Coins &amp; Medals" sample="1" class="o_coin_list" decoration-danger="qty_available == 0">
                 <field name="is_favorite" widget="boolean_favorite" optional="show"/>
                 <field name="default_code" string="SKU / Ref" optional="show"/>
                 <field name="name" string="Coin Name"/>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="mt-1 d-flex align-items-center">
                                     <field name="list_price" widget="monetary"/>
-                                    <span class="text-muted small ms-2">
+                                    <span t-attf-class="small ms-2 {{ record.qty_available.raw_value == 0 ? 'o_coin_stock_out' : 'o_coin_stock_ok' }}">
                                         <t t-esc="Math.round(record.qty_available.raw_value)"/> coins left
                                     </span>
                                 </div>

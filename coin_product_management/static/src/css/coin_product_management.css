@@ -1,9 +1,24 @@
 /* Coin list/kanban: show only the favorite star, hide the "Add to Favorites" /
    "Remove from Favorites" text label that the boolean_favorite widget renders
-   next to it on non-mobile viewports. */
+   next to it. Targeted via the star icon's sibling relationship rather than
+   a guessed wrapper class name, since fa-star/fa-star-o is the one part of
+   this widget's markup that is certain not to change. */
+.o_coin_list i.fa-star ~ span,
+.o_coin_list i.fa-star-o ~ span,
+.o_coin_kanban i.fa-star ~ span,
+.o_coin_kanban i.fa-star-o ~ span,
 .o_coin_list .o_favorite span,
 .o_coin_kanban .o_favorite span,
 .o_coin_list .o_field_boolean_favorite span,
 .o_coin_kanban .o_field_boolean_favorite span {
     display: none !important;
+}
+
+/* Kanban "coins left" stock indicator */
+.o_coin_kanban .o_coin_stock_ok {
+    color: var(--text-muted, #6c757d);
+}
+.o_coin_kanban .o_coin_stock_out {
+    color: var(--danger, #dc3545);
+    font-weight: 600;
 }
