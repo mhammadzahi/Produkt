@@ -66,6 +66,12 @@
                 </div>
             </xpath>
 
+            <xpath expr="//span[@t-if='record.default_code.value']" position="after">
+                <div t-if="record.categ_id.raw_value" class="text-muted small">
+                    <i class="fa fa-folder-o me-1"/><field name="categ_id"/>
+                </div>
+            </xpath>
+
             <xpath expr="//field[@name='product_properties']" position="before">
                 <div class="mt-1">
                     <span t-if="record.coin_metal.raw_value" class="badge rounded-pill text-bg-warning me-1">

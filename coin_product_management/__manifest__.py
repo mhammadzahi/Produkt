@@ -23,7 +23,7 @@ Features
   low mintage alerting.
 * CSV import compatible with standard product export/import column headers.
 """,
-    'version': '19.0.1.1.0',
+    'version': '19.0.1.1.1',
     'category': 'Sales/Sales',
     'author': "Dunja",
     'license': 'LGPL-3',
@@ -38,6 +38,7 @@ Features
     'assets': {
         'web.assets_backend': [
             'coin_product_management/static/src/css/coin_product_management.css',
+            'coin_product_management/static/src/js/coin_view_memory.js',
         ],
     },
     'images': [],
