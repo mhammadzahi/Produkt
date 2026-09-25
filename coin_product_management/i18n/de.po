@@ -26,21 +26,21 @@ msgstr "Münzen & Produkte"
 #. module: coin_product_management
 #: model:ir.actions.act_window,name:coin_product_management.action_coin_eigenprodukte
 #: model:ir.ui.menu,name:coin_product_management.menu_coin_eigenprodukte
-#: model:ir.ui.view,arch_db:coin_product_management.view_coin_product_template_search
+#: model:ir.ui.view,arch_db:coin_product_management.view_product_template_search_coin
 msgid "In-House Products"
 msgstr "Eigenprodukte"
 
 #. module: coin_product_management
 #: model:ir.actions.act_window,name:coin_product_management.action_coin_kundenprodukte
 #: model:ir.ui.menu,name:coin_product_management.menu_coin_kundenprodukte
-#: model:ir.ui.view,arch_db:coin_product_management.view_coin_product_template_search
+#: model:ir.ui.view,arch_db:coin_product_management.view_product_template_search_coin
 msgid "Client Products"
 msgstr "Kundenprodukte"
 
 #. module: coin_product_management
 #: model:ir.actions.act_window,name:coin_product_management.action_coin_medaillen
 #: model:ir.ui.menu,name:coin_product_management.menu_coin_medaillen
-#: model:ir.ui.view,arch_db:coin_product_management.view_coin_product_template_search
+#: model:ir.ui.view,arch_db:coin_product_management.view_product_template_search_coin
 msgid "Medals"
 msgstr "Medaillen"
 

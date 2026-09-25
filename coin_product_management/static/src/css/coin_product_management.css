@@ -1,24 +1,5 @@
-/* Coin list/kanban: show only the favorite star, hide the "Add to Favorites" /
-   "Remove from Favorites" text label. Confirmed via live DOM inspection that
-   this text is a bare text node inside <a class="o_favorite"> (no wrapping
-   element), immediately after the <i class="fa fa-star(-o)"> icon - so it
-   can't be targeted with `span { display: none }`. Instead, collapse the
-   link's own font size to 0 (hiding the raw text) and restore it only on
-   the icon, which is a distinct element with its own font-size. */
-.o_coin_list .o_favorite,
-.o_coin_kanban .o_favorite {
-    font-size: 0;
-}
-.o_coin_list .o_favorite i,
-.o_coin_kanban .o_favorite i {
-    font-size: 1rem;
-}
-
-/* Kanban "coins left" stock indicator */
-.o_coin_kanban .o_coin_stock_ok {
-    color: var(--text-muted, #6c757d);
-}
-.o_coin_kanban .o_coin_stock_out {
+/* Kanban "coins left" line when stock is 0 or below */
+.o_coin_stock_out {
     color: var(--danger, #dc3545);
     font-weight: 600;
 }

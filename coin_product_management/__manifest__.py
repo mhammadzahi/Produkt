@@ -12,16 +12,18 @@ coins, proof collector sets, medals and custom client tooling).
 
 Features
 --------
+* Merged into Odoo's standard product views: every Products screen (Sales,
+  Inventory, Purchase, ...) shows the coin columns, badges and filters.
 * Obverse / reverse image management with WordPress thumbnail URL fields.
-* Numismatic technical specifications on product.template.
-* Configurable list view with togglable columns for quick, at-a-glance review.
-* Dedicated Kanban view with dual obverse/reverse imagery.
-* Dedicated menu structure: Eigenprodukte, Kundenprodukte, Medaillen.
+* Numismatic technical specifications, customer info and Coin Cover
+  (Capsule/Box) variants on product.template.
+* Stock shown as "Coins Left", highlighted red at zero.
+* "Coins" home-screen app as a shortcut: In-House, Client and Medal products.
 * Company-level configuration for default currency, kanban image display and
   low mintage alerting.
 * CSV import compatible with standard product export/import column headers.
 """,
-    'version': '19.0.1.0.7',
+    'version': '19.0.1.1.0',
     'category': 'Sales/Sales',
     'author': "Dunja",
     'license': 'LGPL-3',

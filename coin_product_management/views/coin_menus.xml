@@ -3,116 +3,71 @@
 
     <!-- ================================================================
          WINDOW ACTIONS
+         No view bindings: these open Odoo's standard product views, which
+         this module extends with the coin fields (coin_product_views.xml).
          ================================================================ -->
     <record id="action_coin_products" model="ir.actions.act_window">
         <field name="name">Coins &amp; Products</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
-        <field name="search_view_id" ref="view_coin_product_template_search"/>
+        <field name="search_view_id" ref="stock.product_template_search_form_view_stock"/>
         <field name="domain">[('is_coin_product', '=', True)]</field>
-        <field name="context">{'default_is_coin_product': True}</field>
+        <field name="context">{'default_is_coin_product': True, 'default_is_storable': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first coin or medal
             </p>
         </field>
     </record>
-    <record id="action_coin_products_view_list" model="ir.actions.act_window.view">
-        <field name="sequence">1</field>
-        <field name="view_mode">list</field>
-        <field name="view_id" ref="view_coin_product_template_list"/>
-        <field name="act_window_id" ref="action_coin_products"/>
-    </record>
-    <record id="action_coin_products_view_kanban" model="ir.actions.act_window.view">
-        <field name="sequence">2</field>
-        <field name="view_mode">kanban</field>
-        <field name="view_id" ref="view_coin_product_template_kanban"/>
-        <field name="act_window_id" ref="action_coin_products"/>
-    </record>
 
     <record id="action_coin_eigenprodukte" model="ir.actions.act_window">
         <field name="name">In-House Products</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
-        <field name="search_view_id" ref="view_coin_product_template_search"/>
+        <field name="search_view_id" ref="stock.product_template_search_form_view_stock"/>
         <field name="domain">[('is_coin_product', '=', True), ('categ_id.name', 'ilike', '002 Münzen Eigenprodukte')]</field>
-        <field name="context">{'default_is_coin_product': True}</field>
+        <field name="context">{'default_is_coin_product': True, 'default_is_storable': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first in-house coin
             </p>
         </field>
     </record>
-    <record id="action_coin_eigenprodukte_view_list" model="ir.actions.act_window.view">
-        <field name="sequence">1</field>
-        <field name="view_mode">list</field>
-        <field name="view_id" ref="view_coin_product_template_list"/>
-        <field name="act_window_id" ref="action_coin_eigenprodukte"/>
-    </record>
-    <record id="action_coin_eigenprodukte_view_kanban" model="ir.actions.act_window.view">
-        <field name="sequence">2</field>
-        <field name="view_mode">kanban</field>
-        <field name="view_id" ref="view_coin_product_template_kanban"/>
-        <field name="act_window_id" ref="action_coin_eigenprodukte"/>
-    </record>
 
     <record id="action_coin_kundenprodukte" model="ir.actions.act_window">
         <field name="name">Client Products</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
-        <field name="search_view_id" ref="view_coin_product_template_search"/>
+        <field name="search_view_id" ref="stock.product_template_search_form_view_stock"/>
         <field name="domain">[('is_coin_product', '=', True), ('categ_id.name', 'ilike', '003 Münzen Kundenprodukte')]</field>
-        <field name="context">{'default_is_coin_product': True}</field>
+        <field name="context">{'default_is_coin_product': True, 'default_is_storable': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first client coin
             </p>
         </field>
     </record>
-    <record id="action_coin_kundenprodukte_view_list" model="ir.actions.act_window.view">
-        <field name="sequence">1</field>
-        <field name="view_mode">list</field>
-        <field name="view_id" ref="view_coin_product_template_list"/>
-        <field name="act_window_id" ref="action_coin_kundenprodukte"/>
-    </record>
-    <record id="action_coin_kundenprodukte_view_kanban" model="ir.actions.act_window.view">
-        <field name="sequence">2</field>
-        <field name="view_mode">kanban</field>
-        <field name="view_id" ref="view_coin_product_template_kanban"/>
-        <field name="act_window_id" ref="action_coin_kundenprodukte"/>
-    </record>
 
     <record id="action_coin_medaillen" model="ir.actions.act_window">
         <field name="name">Medals</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">list,kanban,form</field>
-        <field name="search_view_id" ref="view_coin_product_template_search"/>
+        <field name="search_view_id" ref="stock.product_template_search_form_view_stock"/>
         <field name="domain">[('is_coin_product', '=', True), ('categ_id.name', 'ilike', '004 Medaillen')]</field>
-        <field name="context">{'default_is_coin_product': True}</field>
+        <field name="context">{'default_is_coin_product': True, 'default_is_storable': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first medal
             </p>
         </field>
     </record>
-    <record id="action_coin_medaillen_view_list" model="ir.actions.act_window.view">
-        <field name="sequence">1</field>
-        <field name="view_mode">list</field>
-        <field name="view_id" ref="view_coin_product_template_list"/>
-        <field name="act_window_id" ref="action_coin_medaillen"/>
-    </record>
-    <record id="action_coin_medaillen_view_kanban" model="ir.actions.act_window.view">
-        <field name="sequence">2</field>
-        <field name="view_mode">kanban</field>
-        <field name="view_id" ref="view_coin_product_template_kanban"/>
-        <field name="act_window_id" ref="action_coin_medaillen"/>
-    </record>
 
     <!-- ================================================================
-         MENUS
+         MENUS - root menu is the home-screen app shortcut
          ================================================================ -->
     <menuitem id="menu_coin_root"
               name="Coins"
+              web_icon="coin_product_management,static/description/icon.png"
               sequence="60"/>
 
     <menuitem id="menu_coin_products"
