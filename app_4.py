@@ -13,17 +13,13 @@ gets overwritten.
   "002 Eigenprodukte"/"005 Zubehör" rows (no real customer to attach yet).
   Independently-settable fields in the module (not derived from a linked
   contact), so they import directly.
-- "Coin Cover Attribute" / "Coin Cover Values": populated only for actual
-  coin/medal rows, not packaging/accessory rows. Maps to product.template's
-  one2many attribute_line_ids (attribute_id / value_ids) via nested "/"
-  column paths in Odoo's import wizard, matched by name like Product
-  Category was. Each coin gets both "Capsule" and "Box" as selectable
-  values, so Odoo generates one variant per packaging option.
-
-  IMPORTANT: when mapping these two columns in the import wizard, map
-  them to the nested path Attributes (attribute_line_ids) > Attribute
-  (attribute_id) and Attributes > Values (value_ids) respectively - the
-  wizard lets you drill into the relation via the field picker.
+- "attribute_line_ids/attribute_id" / "attribute_line_ids/value_ids":
+  the Coin Cover variant ("Coin Cover" / "Capsule,Box") on EVERY row,
+  accessories included. Headers are technical field paths, which the
+  import wizard maps automatically. Odoo creates one variant per value;
+  the imported Quantity On Hand lands on the first one (Capsule), Box
+  starts at 0. (Older copies of this CSV used "Coin Cover Attribute" /
+  "Coin Cover Values"; the script renames them.)
 
 - DUMMY_CLIENT_PRODUCTS: a handful of obviously-fake "003 Münzen
   Kundenprodukte" rows (fake company names, +41 00 000 00 0x phone
@@ -87,13 +83,14 @@ def _dummy_qty(_row):
     return random.randint(QTY_MIN, QTY_MAX)
 
 
-def _coin_cover_attribute(row):
-    return "Coin Cover" if _is_numismatic_row(row) else ""
-
-
-def _coin_cover_values(row):
-    return "Capsule,Box" if _is_numismatic_row(row) else ""
-
+# Technical field paths: Odoo's import wizard splits headers on "/" and maps
+# each segment itself, so these columns need no manual mapping.
+COVER_ATTR_COL = "attribute_line_ids/attribute_id"
+COVER_VALUES_COL = "attribute_line_ids/value_ids"
+LEGACY_COVER_COLS = {"Coin Cover Attribute": COVER_ATTR_COL, "Coin Cover Values": COVER_VALUES_COL}
+COVER_ATTRIBUTE = "Coin Cover"
+# Capsule first: Odoo puts an imported "Quantity On Hand" on the first variant.
+COVER_VALUES = "Capsule,Box"
 
 # (column name, insert-after existing column, value or value(row) -> value)
 NEW_COLUMNS = [
@@ -101,9 +98,29 @@ NEW_COLUMNS = [
     ("Customer Phone", "Customer", ""),
     ("Customer Email", "Customer Phone", ""),
     ("Quantity On Hand", "Sales Price", _dummy_qty),
-    ("Coin Cover Attribute", "Quantity On Hand", _coin_cover_attribute),
-    ("Coin Cover Values", "Coin Cover Attribute", _coin_cover_values),
+    (COVER_ATTR_COL, "Quantity On Hand", COVER_ATTRIBUTE),
+    (COVER_VALUES_COL, COVER_ATTR_COL, COVER_VALUES),
 ]
+
+
+def normalize_coin_cover(fieldnames, rows):
+    """Rename the old human-readable Coin Cover headers and give every row
+    (accessories included) both Capsule and Box."""
+    changed = False
+    for old, new in LEGACY_COVER_COLS.items():
+        if old in fieldnames and new not in fieldnames:
+            fieldnames[fieldnames.index(old)] = new
+            for row in rows:
+                row[new] = row.pop(old)
+            changed = True
+    if COVER_ATTR_COL in fieldnames:
+        for row in rows:
+            if row.get(COVER_ATTR_COL) != COVER_ATTRIBUTE or row.get(COVER_VALUES_COL) != COVER_VALUES:
+                row[COVER_ATTR_COL] = COVER_ATTRIBUTE
+                row[COVER_VALUES_COL] = COVER_VALUES
+                changed = True
+    print("Coin Cover: " + ("set Capsule,Box on every row." if changed else "already on every row, nothing to do."))
+    return fieldnames, changed
 
 
 def add_missing_columns(fieldnames, rows):
@@ -158,8 +175,8 @@ def add_dummy_client_rows(fieldnames, rows):
             "Customer Email": demo["Customer Email"],
             "Sales Price": demo["Sales Price"],
             "Quantity On Hand": random.randint(QTY_MIN, QTY_MAX),
-            "Coin Cover Attribute": "Coin Cover",
-            "Coin Cover Values": "Capsule,Box",
+            COVER_ATTR_COL: COVER_ATTRIBUTE,
+            COVER_VALUES_COL: COVER_VALUES,
             "Unit": "Units",
             "Reverse Image": placeholder_rev,
             "Obverse Image": placeholder_obv,
@@ -197,11 +214,14 @@ def run():
         fieldnames = list(reader.fieldnames)
         rows = list(reader)
 
+    # Rename legacy Coin Cover headers first, so the missing-column step
+    # doesn't add the technical ones next to them.
+    fieldnames, cover_changed = normalize_coin_cover(fieldnames, rows)
     fieldnames, cols_changed = add_missing_columns(fieldnames, rows)
     rows, rows_changed = add_dummy_client_rows(fieldnames, rows)
     rows, zero_changed = force_zero_stock_samples(rows) if "Quantity On Hand" in fieldnames else (rows, False)
 
-    if not cols_changed and not rows_changed and not zero_changed:
+    if not (cover_changed or cols_changed or rows_changed or zero_changed):
         print("Nothing to do.")
         return
 

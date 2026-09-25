@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Every coin has Capsule/Box variants, so the Product Variants feature
+         (normally a Sales/Inventory setting) is always on for internal users;
+         without it the variant tab and pickers stay hidden. -->
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('product.group_product_variant'))]"/>
+    </record>
+
     <record id="product_attribute_coin_cover" model="product.attribute">
         <field name="name">Coin Cover</field>
         <field name="create_variant">always</field>
     </record>
 
+    <!-- Capsule first: it becomes the default variant, which is where an
+         imported "Quantity On Hand" lands. -->
     <record id="product_attribute_value_capsule" model="product.attribute.value">
         <field name="name">Capsule</field>
         <field name="attribute_id" ref="product_attribute_coin_cover"/>
+        <field name="sequence">1</field>
     </record>
 
     <record id="product_attribute_value_box" model="product.attribute.value">
         <field name="name">Box</field>
         <field name="attribute_id" ref="product_attribute_coin_cover"/>
+        <field name="sequence">2</field>
     </record>
 
 </odoo>
